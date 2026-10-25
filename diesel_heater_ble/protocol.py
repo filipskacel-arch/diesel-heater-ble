@@ -207,6 +207,7 @@ class ProtocolAA55Encrypted(VevorCommandMixin, HeaterProtocol):
     name = "AA55 encrypted"
 
     def parse(self, data: bytearray) -> dict[str, Any] | None:
+        data = _decrypt_data(data)
         parsed: dict[str, Any] = {}
 
         parsed["running_state"] = _u8_to_number(data[3])
@@ -270,6 +271,7 @@ class ProtocolAA66Encrypted(VevorCommandMixin, HeaterProtocol):
     name = "AA66 encrypted"
 
     def parse(self, data: bytearray) -> dict[str, Any] | None:
+        data = _decrypt_data(data)
         parsed: dict[str, Any] = {}
 
         parsed["running_state"] = _u8_to_number(data[3])
